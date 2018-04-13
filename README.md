@@ -1,2 +1,2 @@
-# OJ_algorithms-
+# OJ_algorithms
 coding practice about OJ_algorithms
