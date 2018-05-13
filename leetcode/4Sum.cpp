@@ -1,16 +1,19 @@
 class Solution {
 public:
-    vector<vector<int> > threeSum(vector<int> &num) {
+    vector<vector<int> > fourSum(vector<int> &num, int target) {
         vector<vector<int> > Res;
-        if(num.empty()||num.size()<3)
+        if(num.empty()||num.size()<4)
             return Res;
         sort(num.begin(),num.end());
-        for(int i=0;i<=num.size()-3;i++){
+        for(int i=0;i<num.size()-3;i++){
             if(i!=0&&num[i]==num[i-1])
                 continue;
-                //两数相加的查找办法
-                int low=i+1,high=num.size()-1;
-                int sum=-num[i];
+            for(int j=i+1;j<num.size()-2;j++){
+                if(j!=i+1&&num[j]==num[j-1])
+                    continue;
+                //two sum
+                int low=j+1,high=num.size()-1;
+                int sum=target-num[i]-num[j];
                 while(low<high){
                     if(num[low]+num[high]<sum){
                         low++;
@@ -29,6 +32,7 @@ public:
                     else{
                         vector<int> res;
                         res.push_back(num[i]);
+                        res.push_back(num[j]);
                         res.push_back(num[low]);
                         res.push_back(num[high]);
                         Res.push_back(res);
@@ -41,6 +45,7 @@ public:
                         continue;
                     }
                 }
+            }
         }
         return Res;
     }
